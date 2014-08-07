@@ -4,6 +4,18 @@ module.exports = function(grunt) {
 			dev: {
 				files: {
 					'javascript/main.min.js': ['javascript/main.js', 'javascript/addon.js']
+				},
+				options: {
+					sourceMap: true,
+					banner: '// Production Build'
+				}
+			},
+			build: {
+				files:  {
+					'javascript/main.min.js': ['javascript/main.js', 'javascript/addon.js']
+				},
+				options: {
+					banner: '// Production Build'
 				}
 			}
 		},
@@ -15,10 +27,19 @@ module.exports = function(grunt) {
 					src: ['*.css'],
 					dest: 'css/min/',
 					ext: '.min.css'
-				}]
+				}],
+				options: {
+					sourceMap: true
+				}
 			}
 		}
 	});
+	grunt.registerTask(
+		'dev', ['uglify', 'cssmin']
+	);
+	grunt.registerTask(
+		'build', ['uglify:build', 'cssmin']
+	);
 	grunt.loadNpmTasks(
 		'grunt-contrib-uglify'
 	);
