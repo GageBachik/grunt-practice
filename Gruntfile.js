@@ -32,10 +32,20 @@ module.exports = function(grunt) {
 					sourceMap: true
 				}
 			}
+		},
+		watch: {
+			scripts: {
+				files: ['javascript/main.js', 'javascript/addon.js'],
+				tasks: ['uglify:dev']
+			},
+			styles: {
+				files: ['css/*.css'],
+				tasks: ['cssmin']
+			}
 		}
 	});
 	grunt.registerTask(
-		'dev', ['uglify', 'cssmin']
+		'dev', ['uglify', 'cssmin', 'watch']
 	);
 	grunt.registerTask(
 		'build', ['uglify:build', 'cssmin']
@@ -45,5 +55,8 @@ module.exports = function(grunt) {
 	);
 	grunt.loadNpmTasks(
 		'grunt-contrib-cssmin'
+	);
+	grunt.loadNpmTasks(
+		'grunt-contrib-watch'
 	);
 }

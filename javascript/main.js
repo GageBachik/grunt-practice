@@ -1,3 +1,3 @@
 var imAwesome = function(){
-	console.log("well duh:");
+	console.log("well duh!");
 };
